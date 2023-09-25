@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/nav_alunos"
+        android:title="Alunos"/>
+
+    <item
+        android:id="@+id/nav_exercicios"
+        android:title="Exercícios"/>
+
+    <item
+        android:id="@+id/nav_aparelhos"
+        android:title="Aparelhos"/>
+
+    <item android:title="Profile">
+
+        <menu>
+            <item
+                android:id="@+id/nav_usuarios"
+                android:title="Usuários"/>
+        </menu>
+    </item>
 </menu>

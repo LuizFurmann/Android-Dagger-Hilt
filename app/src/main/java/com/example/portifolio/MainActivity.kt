@@ -3,11 +3,16 @@ package com.example.portifolio
 import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.portifolio.adapter.UserAdapter
 import com.example.portifolio.viewmodel.MainViewModel
 import com.example.portifolio.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayoutMediator
 
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding : ActivityMainBinding
+    lateinit var toggle: ActionBarDrawerToggle
 
     val tabssArray = arrayOf(
         "Hoje",
@@ -27,13 +33,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         setupTabLayout()
+        setupDrawer()
 
         postViewModel.getPost()
 
     }
-
-
 
     private fun setupTabLayout() {
         val viewPager = binding.appBarMain.viewpager
@@ -45,5 +51,32 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabssArray[position]
         }.attach()
+    }
+
+    private fun setupDrawer(){
+        val draweLayout : DrawerLayout = binding.drawerLayout
+        val navView : NavigationView = binding.navView
+
+        toggle = ActionBarDrawerToggle(this,draweLayout, R.string.nav_open, R.string.nav_open)
+        draweLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        navView.setNavigationItemSelectedListener {
+
+            when(it.itemId){
+                R.id.nav_alunos -> Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
