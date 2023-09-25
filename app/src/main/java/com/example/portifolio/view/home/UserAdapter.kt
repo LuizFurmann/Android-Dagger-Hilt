@@ -1,4 +1,4 @@
-package com.example.portifolio.adapter
+package com.example.portifolio.view.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

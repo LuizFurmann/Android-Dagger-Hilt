@@ -1,4 +1,4 @@
-package com.example.portifolio
+package com.example.portifolio.view.home
 
 import androidx.appcompat.app.AppCompatActivity
 
@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.portifolio.adapter.UserAdapter
+import com.example.portifolio.R
 import com.example.portifolio.viewmodel.MainViewModel
 import com.example.portifolio.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
@@ -18,7 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding : ActivityMainBinding
     lateinit var toggle: ActionBarDrawerToggle

@@ -1,4 +1,4 @@
-package com.example.portifolio.viewmodel
+package com.example.portifolio.network
 
 
 import com.example.portifolio.network.ApiService

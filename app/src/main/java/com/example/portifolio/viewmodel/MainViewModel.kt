@@ -2,6 +2,7 @@ package com.example.portifolio.viewmodel
 
 import androidx.lifecycle.*
 import com.example.portifolio.model.User
+import com.example.portifolio.network.PostRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

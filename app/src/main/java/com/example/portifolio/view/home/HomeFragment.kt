@@ -1,4 +1,4 @@
-package com.example.portifolio
+package com.example.portifolio.view.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.portifolio.R
 import com.example.portifolio.viewmodel.MainViewModel
-import com.example.portifolio.adapter.UserAdapter
 import com.example.portifolio.databinding.FragmentHomeBinding
 import com.example.portifolio.model.User
 import dagger.hilt.android.AndroidEntryPoint
