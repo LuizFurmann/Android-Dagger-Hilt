@@ -26,10 +26,6 @@ class HomeFragment : Fragment() {
 //    private val postViewModel: MainViewModel by viewModels()
     private lateinit var postViewModel: MainViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,7 +41,7 @@ class HomeFragment : Fragment() {
         postViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         postViewModel.getPost()
         postViewModel.response.observe(requireActivity(), Observer { response ->
-            postAdapter.setData(response as ArrayList<MovieResponse>)
+//            postAdapter.setData(response as ArrayList<MovieResponse>)
         })
     }
 

@@ -1,7 +1,7 @@
 package com.example.portifolio.network
 
 object NetworkingConstants {
-    const val BASE_URL = "https://api.tvmaze.com/"
+    const val BASE_URL = "https://api.github.com/search/"
 
-    const val URL_REPOSITORIES = "shows/1/images"
+    const val URL_REPOSITORIES = "repositories"
 }

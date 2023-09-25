@@ -8,10 +8,11 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.androidflow.Models.MovieResponse
+import com.example.portifolio.Models.User
 import com.example.portifolio.R
 
 
-class PostAdapter(private val context: Context, private var postList: ArrayList<MovieResponse>) :
+class PostAdapter(private val context: Context, private var postList: ArrayList<User>) :
     RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -22,7 +23,6 @@ class PostAdapter(private val context: Context, private var postList: ArrayList<
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = postList[position]
-        holder.body.load(""+post.resolutions.original.url)
 
     }
 
@@ -31,7 +31,7 @@ class PostAdapter(private val context: Context, private var postList: ArrayList<
         val body: ImageView = itemView.findViewById(R.id.body)
     }
 
-    fun setData(postList: ArrayList<MovieResponse>) {
+    fun setData(postList: ArrayList<User>) {
         this.postList = postList
         notifyDataSetChanged()
     }
