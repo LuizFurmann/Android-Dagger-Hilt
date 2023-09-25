@@ -39,6 +39,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.MyViewHolder>(), Filterable
         this.listUser.clear()
         this.listUser.addAll(listUser!!)
         this.filteredListItems.addAll(listUser)
+        notifyDataSetChanged()
     }
 
     override fun getFilter(): Filter {
@@ -75,9 +76,6 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.MyViewHolder>(), Filterable
 //                .load(user.owner.avatar_url)
 //                .into(thumbImage)
         }
-
-
-
 
     }
 }

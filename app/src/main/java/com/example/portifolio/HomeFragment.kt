@@ -60,7 +60,6 @@ class HomeFragment : Fragment() {
             binding.recyclerView.visibility = View.GONE
         } else {
             binding.recyclerView.visibility = View.VISIBLE
-
             userAdapter.updateList(orders)
         }
     }
