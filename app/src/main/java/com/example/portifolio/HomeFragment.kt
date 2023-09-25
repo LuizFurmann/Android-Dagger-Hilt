@@ -5,16 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidflow.Models.MovieResponse
-import com.example.androidflow.viewmodel.MainViewModel
-import com.example.portifolio.adapter.PostAdapter
+import com.example.portifolio.viewmodel.MainViewModel
+import com.example.portifolio.adapter.UserAdapter
 import com.example.portifolio.databinding.FragmentHomeBinding
+import com.example.portifolio.model.User
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +20,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var postAdapter: PostAdapter
+    private lateinit var userAdapter: UserAdapter
 //    private val postViewModel: MainViewModel by viewModels()
     private lateinit var postViewModel: MainViewModel
 
@@ -37,21 +35,33 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
-        setUi()
+        setupRecyclerView()
+        setupViewModel()
+    }
+
+    private fun setupRecyclerView() {
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        userAdapter = UserAdapter()
+        binding.recyclerView.adapter = userAdapter
+//        setHasFixedSize(true)
+
+    }
+
+    private fun setupViewModel(){
         postViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         postViewModel.getPost()
-        postViewModel.response.observe(requireActivity(), Observer { response ->
-//            postAdapter.setData(response as ArrayList<MovieResponse>)
+        postViewModel.response.observe(requireActivity(), Observer { users : List<User>->
+            updateList(users)
         })
     }
 
-    private fun setUi() {
-        recyclerView = binding!!.recyclerView
-        postAdapter = PostAdapter(requireActivity(), ArrayList())
-        recyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireActivity())
-            adapter = postAdapter
+    private fun updateList(orders: List<User>){
+        if (orders.isEmpty()) {
+            binding.recyclerView.visibility = View.GONE
+        } else {
+            binding.recyclerView.visibility = View.VISIBLE
+
+            userAdapter.updateList(orders)
         }
     }
 }

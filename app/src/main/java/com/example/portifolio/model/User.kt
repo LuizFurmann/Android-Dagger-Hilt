@@ -1,4 +1,4 @@
-package com.example.portifolio.Models
+package com.example.portifolio.model
 
 data class User (
     val name: String,

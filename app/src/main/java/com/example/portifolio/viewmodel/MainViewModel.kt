@@ -1,11 +1,8 @@
-package com.example.androidflow.viewmodel
+package com.example.portifolio.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.androidflow.Models.MovieResponse
-import com.example.portifolio.Models.User
+import com.example.portifolio.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
