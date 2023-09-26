@@ -4,14 +4,19 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.portifolio.R
 import com.example.portifolio.viewmodel.MainViewModel
 import com.example.portifolio.databinding.ActivityMainBinding
+import com.example.portifolio.model.User
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -21,62 +26,40 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding : ActivityMainBinding
-    lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var userAdapter: UserAdapter
+    private lateinit var postViewModel: MainViewModel
 
-    val tabssArray = arrayOf(
-        "Hoje",
-        "Semana"
-    )
-
-    private val postViewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setupTabLayout()
-        setupDrawer()
+        setupRecyclerView()
+        setupViewModel()
+    }
 
+    private fun setupRecyclerView() {
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        userAdapter = UserAdapter()
+        binding.recyclerView.adapter = userAdapter
+//        setHasFixedSize(true)
+
+    }
+
+    private fun setupViewModel(){
+        postViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         postViewModel.getPost()
-
+        postViewModel.response.observe(this, Observer { users : List<User>->
+            updateList(users)
+        })
     }
 
-    private fun setupTabLayout() {
-        val viewPager = binding.appBarMain.viewpager
-        val tabLayout = binding.appBarMain.tabLayout
-
-        val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
-        viewPager.adapter = adapter
-
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = tabssArray[position]
-        }.attach()
-    }
-
-    private fun setupDrawer(){
-        val draweLayout : DrawerLayout = binding.drawerLayout
-        val navView : NavigationView = binding.navView
-
-        toggle = ActionBarDrawerToggle(this,draweLayout, R.string.nav_open, R.string.nav_open)
-        draweLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        navView.setNavigationItemSelectedListener {
-
-            when(it.itemId){
-                R.id.nav_alunos -> Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
-            }
-            true
+    private fun updateList(orders: List<User>){
+        if (orders.isEmpty()) {
+            binding.recyclerView.visibility = View.GONE
+        } else {
+            binding.recyclerView.visibility = View.VISIBLE
+            userAdapter.updateList(orders)
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if(toggle.onOptionsItemSelected(item)){
-            return true
-        }
-        return super.onOptionsItemSelected(item)
     }
 }
