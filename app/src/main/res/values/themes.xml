@@ -8,7 +8,10 @@
     <style name="Theme.Portifolio.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
 
+    <style name="Circular">
+        <item name="cornerSize">50%</item>
     </style>
 
     <style name="Theme.Portifolio" parent="Base.Theme.Portifolio" />

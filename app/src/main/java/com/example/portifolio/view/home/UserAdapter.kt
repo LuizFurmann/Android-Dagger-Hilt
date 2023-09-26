@@ -6,6 +6,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.portifolio.databinding.CardItemBinding
 import com.example.portifolio.model.User
 import java.util.Locale
@@ -71,11 +72,14 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.MyViewHolder>(), Filterable
 
     class MyViewHolder(private val binding: CardItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
-            binding.name.text = user.name
-            //            Glide.with(thumbImage)
-//                .load(user.owner.avatar_url)
-//                .into(thumbImage)
-        }
+            binding.tvName.text = user.name
+            binding.tvDescription.text = user.description
+            binding.tvUsername.text = user.owner.login
+            binding.tvFullName.text = user.fullName
 
+            Glide.with(binding.imgUser)
+                .load(user.owner.avatar_url)
+                .into(binding.imgUser)
+        }
     }
 }
