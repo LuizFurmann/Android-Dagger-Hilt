@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
+import androidx.core.view.WindowCompat
 import com.example.portifolio.R
 import com.example.portifolio.databinding.ActivitySplashBinding
 import com.example.portifolio.view.home.HomeActivity
@@ -16,6 +17,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(binding.root)
         supportActionBar?.hide();
 

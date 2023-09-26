@@ -4,30 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
+    android:background="#01B23C"
     tools:context=".view.splash.SplashActivity">
 
     <ImageView
         android:id="@+id/imgHat"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:src="@drawable/img_hat"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/android"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/tvPortifolio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Portifólio"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/white"
-        android:textSize="56sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/imgHat"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
